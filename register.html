@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <meta property="og:title" content="Hextech Client - Форум">
+    <meta property="og:url" content="https://hextech-client.github.io/hextech-client/">
+    <meta property="og:image" content="https://i.postimg.cc/3rCH35Zk/logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hextech Client - Форум">
+    <meta name="twitter:image" content="https://i.postimg.cc/3rCH35Zk/logo.png">
+    <title>Hextech Client - Форум</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 1000px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .top-bar {
+            background-color: #1b1b1b;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #333;
+            border-radius: 15px 15px 0 0;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .logo span {
+            color: #2d79cf;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-right: 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .notifications {
+            padding: 15px;
+            text-align: center;
+        }
+        .notification {
+            background-color: #6d23b6;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .announcement {
+            background-color: #1b1b1b;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .announcement h3 {
+            color: #bbb;
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+        .announcement p {
+            margin: 0;
+            color: white;
+        }
+        .announcement p span {
+            color: red;
+            font-weight: bold;
+        }
+        .announcement a {
+            color: #2d79cf;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .forum-section {
+            background-color: #0f0f0f;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .forum-container {
+            background: #1b1b1b;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .forum-title {
+            color: #bbb;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .forum-category {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .forum-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #111;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .forum-icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .forum-info {
+            flex: 1;
+        }
+        .forum-latest a {
+            color: #2d79cf;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .forum-latest p {
+            color: #bbb;
+            margin: 0;
+        }
+        .forum-latest span {
+            color: white;
+        }
+        .container {
+            width: 1000px;
+        }
+        :root {
+            --forum-width: 100%;
+        }
+        .forum-container {
+            width: var(--forum-width);
+            box-sizing: border-box;
+        }
+        .forum-width-small {
+            --forum-width: 600px;
+        }
+        .forum-width-medium {
+            --forum-width: 800px;
+        }
+        .forum-width-large {
+            --forum-width: 1000px;
+        }
+        .forum-width-full {
+            --forum-width: 100%;
+        }
+        .forum-section {
+            padding: 0;
+            margin: 20px 0;
+        }
+        .forum-container {
+            margin: 0 20px;
+            box-sizing: border-box;
+        }
+        .forum-title {
+            margin-left: 0;
+            padding-left: 0;
+        }
+        .forum-category {
+            margin-left: 0;
+            padding-left: 0;
+        }
+        .forum-section {
+            padding: 0;
+            margin: 20px 0;
+        }
+        .forum-container {
+            margin: 0 20px;
+            padding: 15px;
+            width: calc(100% - 40px);
+            box-sizing: border-box;
+        }
+        .forum-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+        }
+        .forum-icon {
+            margin-right: 15px;
+        }
+        .forum-info {
+            display: flex;
+            align-items: center;
+        }
+        .forum-latest {
+            text-align: right;
+        }
+        .forum-title {
+            padding: 0;
+            margin: 0 0 10px 0;
+        }
+        :root {
+            --forum-margin-left: 0px;
+            --forum-margin-right: 20px;
+        }
+        .forum-container {
+            margin-left: var(--forum-margin-left);
+            margin-right: var(--forum-margin-right);
+            padding: 15px;
+            width: calc(100% - (var(--forum-margin-left) + var(--forum-margin-right)));
+            box-sizing: border-box;
+        }
+        .forum-margin-left-small {
+            --forum-margin-left: 10px;
+        }
+        .forum-margin-left-large {
+            --forum-margin-left: 30px;
+        }
+        .forum-margin-right-small {
+            --forum-margin-right: 10px;
+        }
+        .forum-margin-right-large {
+            --forum-margin-right: 30px;
+        }
+        /* Новые стили для формы регистрации */
+        .registration {
+            background-color: #1b1b1b;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .registration h2 {
+            color: #bbb;
+            margin: 0 0 15px 0;
+            font-size: 18px;
+        }
+        .registration form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .registration input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            font-size: 14px;
+        }
+        .registration input::placeholder {
+            color: #bbb;
+        }
+        .registration button {
+            background-color: #2d79cf;
+            border: none;
+            padding: 10px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .registration button:hover {
+            background-color: #1a5a9f;
+        }
+        /* Стили для уведомления об успешной регистрации */
+        #registrationNotification {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(30, 30, 30, 0.95);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            transition: top 0.5s ease, opacity 0.3s ease;
+            font-size: 16px;
+            width: 400px;
+            text-align: center;
+            opacity: 0;
+            z-index: 10000;
+        }
+        #registrationNotification.show {
+            top: 20px;
+            opacity: 1;
+        }
+        /* Стили для уведомления об ошибке (код приглашения не введён или неверен) */
+        #errorNotification {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(50, 30, 30, 0.95);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            transition: top 0.5s ease, opacity 0.3s ease;
+            font-size: 16px;
+            width: 400px;
+            text-align: center;
+            opacity: 0;
+            z-index: 10000;
+        }
+        #errorNotification.show {
+            top: 20px;
+            opacity: 1;
+        }
+        .blurBackground {
+            filter: blur(5px);
+            transition: filter 0.3s ease;
+        }
+        /* Новый стиль для текста "Уже зарегистрированы? Войти" */
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+            padding-bottom: 20px;
+        }
+        .login-link a {
+            text-decoration: none; /* Убирает подчеркивания у ссылок */
+        }
+    </style>
+</head>
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+<body>
+    <!-- Уведомление об успешной регистрации -->
+    <div id="registrationNotification">
+        <strong>Регистрация успешна!</strong><br>
+        Добро пожаловать на форум!
+    </div>
+
+    <!-- Уведомление об ошибке (код приглашения не введён или неверен) -->
+    <div id="errorNotification">
+        <strong>Ошибка!</strong><br>
+        Неверный код приглашения или данные.
+    </div>
+
+    <div class="container" id="mainContainer">
+        <header>
+            <div class="top-bar">
+                <div class="logo">Hex<span>tech</span> Client</div>
+                <nav>
+                    <ul>
+                        <li><a href="forum.html">Главная</a></li>
+                        <li><a href="#">Поиск</a></li>
+                        <li><a href="login.html">Профиль</a></li>
+                        <li><a href="#">Купить</a></li>
+                        <li><a href="login.html" style="color: rgb(50, 180, 255);">Войти</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Новая секция для формы регистрации -->
+        <section class="registration">
+            <h2>Регистрация на форуме</h2>
+            <form id="registrationForm">
+                <input type="text" id="username" placeholder="Логин" required>
+                <input type="password" id="password" placeholder="Пароль" required>
+                <input type="email" id="email" placeholder="Почта" required>
+                <input type="text" id="inviteCode" placeholder="Код приглашения" required>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+        </section>
+
+        <!-- Новый блок для текста "Уже зарегистрированы? Войти" -->
+        <div class="login-link">
+            <a style="color: rgb(255, 255, 255);">Уже зарегистрированы?</a> <a href="login.html" style="color: rgb(255, 0, 0);">Войти.</a>
+        </div>
+
+        <!-- JavaScript для обработки формы регистрации -->
+        <script>
+            // Элементы формы и уведомления
+            const registrationForm = document.getElementById('registrationForm');
+            const registrationNotification = document.getElementById('registrationNotification');
+            const errorNotification = document.getElementById('errorNotification');
+            const mainContainer = document.getElementById('mainContainer');
+
+            // Функция показа уведомления об успешной регистрации
+            function showSuccessNotification() {
+                if (!registrationNotification.classList.contains('show')) {
+                    registrationNotification.classList.add('show');
+                    mainContainer.classList.add('blurBackground');
+                }
+            }
+
+            // Функция показа уведомления об ошибке
+            function showErrorNotification() {
+                if (!errorNotification.classList.contains('show')) {
+                    errorNotification.classList.add('show');
+                    mainContainer.classList.add('blurBackground');
+                }
+            }
+
+            // Закрытие уведомлений при клике вне их
+            document.addEventListener('click', function(e) {
+                if (registrationNotification.classList.contains('show') && !registrationNotification.contains(e.target)) {
+                    registrationNotification.classList.remove('show');
+                    mainContainer.classList.remove('blurBackground');
+                }
+                if (errorNotification.classList.contains('show') && !errorNotification.contains(e.target)) {
+                    errorNotification.classList.remove('show');
+                    mainContainer.classList.remove('blurBackground');
+                }
+            });
+
+            // Предотвращаем закрытие уведомлений, если клик на самом уведомлении
+            registrationNotification.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            errorNotification.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            // Обработчик отправки формы
+            registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Предотвращаем стандартную отправку формы
+
+                // Получаем значения полей
+                const username = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const inviteCode = document.getElementById('inviteCode').value.trim();
+
+                // Проверяем, введён ли код приглашения
+                if (inviteCode === '') {
+                    showErrorNotification();
+                    return; // Прерываем выполнение, если код не введён
+                }
+
+                // Проверяем, введена ли почта
+                if (email === '') {
+                    showErrorNotification();
+                    return; // Прерываем выполнение, если почта не введена
+                }
+
+                // Проверяем первую "базу данных" (скрытые данные для перенаправления)
+                if (
+                    password === '1234' &&
+                    inviteCode === 'GqXlGsRbt9PdZNTBv6PsWCockWQqDNp5NzJXeSUjgY2HEgWN'
+                ) {
+                    // Показываем уведомление об успешной регистрации
+                    showSuccessNotification();
+                    // Перенаправляем на первый сайт через 2 секунды
+                    setTimeout(() => {
+                        window.location.href = 'uid1 authed.html';
+                    }, 2000);
+                }
+                // Проверяем вторую "базу данных" (новые скрытые данные для перенаправления)
+                else if (
+                    password === 'pass456' &&
+                    inviteCode === 'INVITE2026'
+                ) {
+                    // Показываем уведомление об успешной регистрации
+                    showSuccessNotification();
+                    // Перенаправляем на второй сайт через 2 секунды
+                    setTimeout(() => {
+                        window.location.href = 'https://example.org';
+                    }, 2000);
+                }
+                // Если данные не совпадают с базой данных, показываем уведомление об ошибке
+                else {
+                    showErrorNotification();
+                    registrationForm.reset();
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

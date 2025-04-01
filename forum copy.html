@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <meta property="og:title" content="Hextech Client - Форум">
+    <meta property="og:url" content="https://hextech-client.github.io/hextech-client/">
+    <meta property="og:image" content="https://i.postimg.cc/3rCH35Zk/logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hextech Client - Форум">
+    <meta name="twitter:image" content="https://i.postimg.cc/3rCH35Zk/logo.png">
+    <title>Hextech Client - Форум</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 1000px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .top-bar {
+            background-color: #1b1b1b;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #333;
+            border-radius: 20px 15px 0 0;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .logo span {
+            color: #2d79cf;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-right: 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .notifications {
+            padding: 15px;
+            text-align: center;
+        }
+        .notification {
+            background-color: #6d23b6;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .announcement {
+        background-color: #1b1b1b;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 0px -0px;
+        box-sizing: border-box;
+        overflow: auto;
+        width: 980px;
+        height: 100px;
+        }
+        .announcement h3 {
+            color: #bbb;
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+        .announcement p {
+            margin: 0;
+            color: white;
+        }
+        .announcement p span {
+            color: red;
+            font-weight: bold;
+        }
+        .announcement a {
+            color: #2d79cf;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .forum-section {
+            background-color: #0f0f0f;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .forum-container {
+            background: #1b1b1b;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .forum-title {
+            color: #bbb;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .forum-category {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .forum-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #111;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .forum-icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .forum-info {
+            flex: 1;
+        }
+        .forum-latest a {
+            color: #2d79cf;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .forum-latest p {
+            color: #bbb;
+            margin: 0;
+        }
+        .forum-latest span {
+            color: white;
+        }
+        .container {
+            width: 1000px;
+        }
+
+        /* Определяем CSS-переменные для ширины и высоты объявлений */
+        :root {
+            --announcement-width: 100%; /* Значение по умолчанию */
+            --announcement-height: auto; /* Значение по умолчанию */
+            --forum-width: 100%;
+            --forum-margin-left: 0px;
+            --forum-margin-right: 20px;
+        }
+
+        /* Классы для разных размеров объявлений */
+        .announcement-width-small {
+            --announcement-width: 600px;
+        }
+        .announcement-width-medium {
+            --announcement-width: 800px;
+        }
+        .announcement-width-large {
+            --announcement-width: 1000px;
+        }
+        .announcement-width-full {
+            --announcement-width: 100%;
+        }
+
+        .announcement-height-small {
+            --announcement-height: 50px;
+        }
+        .announcement-height-medium {
+            --announcement-height: 150px;
+        }
+        .announcement-height-large {
+            --announcement-height: 200px;
+        }
+        .announcement-height-auto {
+            --announcement-height: auto;
+        }
+
+        /* Остальные стили для форума */
+        .forum-container {
+            width: var(--forum-width);
+            box-sizing: border-box;
+        }
+        .forum-width-small {
+            --forum-width: 600px;
+        }
+        .forum-width-medium {
+            --forum-width: 800px;
+        }
+        .forum-width-large {
+            --forum-width: 1000px;
+        }
+        .forum-width-full {
+            --forum-width: 100%;
+        }
+        .forum-section {
+            padding: 0;
+            margin: 20px 0;
+        }
+        .forum-container {
+            margin: 0 20px;
+            box-sizing: border-box;
+        }
+        .forum-title {
+            margin-left: 0;
+            padding-left: 0;
+        }
+        .forum-category {
+            margin-left: 0;
+            padding-left: 0;
+        }
+        .forum-section {
+            padding: 0;
+            margin: 20px 0;
+        }
+        .forum-container {
+            margin: 0 20px;
+            padding: 15px;
+            width: calc(100% - 40px);
+            box-sizing: border-box;
+        }
+        .forum-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+        }
+        .forum-icon {
+            margin-right: 15px;
+        }
+        .forum-info {
+            display: flex;
+            align-items: center;
+        }
+        .forum-latest {
+            text-align: right;
+        }
+        .forum-title {
+            padding: 0;
+            margin: 0 0 10px 0;
+        }
+        .forum-container {
+            margin-left: var(--forum-margin-left);
+            margin-right: var(--forum-margin-right);
+            padding: 15px;
+            width: calc(100% - (var(--forum-margin-left) + var(--forum-margin-right)));
+            box-sizing: border-box;
+        }
+        .forum-margin-left-small {
+            --forum-margin-left: 10px;
+        }
+        .forum-margin-left-large {
+            --forum-margin-left: 30px;
+        }
+        .forum-margin-right-small {
+            --forum-margin-right: 10px;
+        }
+        .forum-margin-right-large {
+            --forum-margin-right: 30px;
+        }
+
+        /* Стили для мини-профиля */
+        .username-container {
+            position: relative;
+            display: inline-block;
+        }
+        .username {
+            color: rgb(255, 0, 0);
+            text-decoration: none;
+        }
+        .mini-profile {
+            display: block;
+            opacity: 0;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 5px;
+            width: 300px;
+            padding: 10px;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+        .username-container:hover .mini-profile {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mini-profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .mini-profile-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .mini-profile-info {
+            flex: 1;
+        }
+        .mini-profile-username {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ff0000 !important;
+            margin: 0;
+        }
+        .mini-profile-username a {
+            color: #ff0000;
+            text-decoration: none;
+        }
+        .mini-profile-username a:hover {
+            text-decoration: underline;
+        }
+        .mini-profile-status {
+            font-size: 12px;
+            color: #bbb;
+            margin: 0;
+        }
+        .mini-profile-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .mini-profile-stats div {
+            text-align: center;
+        }
+        .mini-profile-stats p {
+            margin: 0;
+            font-size: 14px;
+            color: #fff;
+        }
+        .mini-profile-stats span {
+            color: #bbb;
+            font-size: 12px;
+        }
+        .mini-profile-section {
+            margin-bottom: 10px;
+        }
+        .mini-profile-section h4 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+            color: #bbb;
+        }
+        .mini-profile-section p {
+            margin: 0;
+            font-size: 12px;
+            color: #fff;
+        }
+        .profile-button {
+            display: inline-block;
+            background-color: #2d79cf;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 12px;
+            margin: 5px 0;
+            text-align: center;
+        }
+        .profile-button:hover {
+            background-color: #1a5ca8;
+        }
+        .message-button {
+            display: inline-block;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 12px;
+            margin: 5px 0;
+            text-align: center;
+        }
+        .message-button:hover {
+            color: #bbb;
+        }
+    </style>
+</head>
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+<body>
+    <div class="container">
+        <header>
+            <div class="top-bar">
+                <div class="logo">Hex<span>tech</span> Client</div>
+                <nav>
+                    <ul>
+                        <li><a href="forum.html">Главная</a></li>
+                        <li><a href="#">Поиск</a></li>
+                        <li><a href="login.html">Профиль</a></li>
+                        <li><a href="#">Купить</a></li>
+                        <li><a href="login.html" style="color: rgb(50, 180, 255);">Войти</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+        <section class="notifications">
+        </section>
+
+        <section class="announcement">
+            <h3>Объявления</h3>
+            <p><span>Произошла ошибка:</span><br>
+            У вас нет прав для просмотра этой страницы. <a href="login.html">Зарегистрируйтесь или войдите для просмотра этой страницы</a>.</p>
+        </section>
+
+</body>
+</html>

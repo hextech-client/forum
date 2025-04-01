@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .profile-container {
+            width: 955px;
+            background-color: #1b1b1b;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px; /* Измени этот параметр для регулирования отступа */
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .profile-header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #ff0000;
+        }
+        .profile-info {
+            text-align: left;
+        }
+        .profile-info h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+        .profile-info p {
+            margin: 5px 0;
+            color: #bbb;
+        }
+        .profile-actions {
+            margin-top: 15px;
+        }
+        .profile-actions button {
+            background-color: #2d79cf;
+            border: none;
+            padding: 10px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .tabs a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 5px;
+        }
+        .status-update {
+            margin-top: 20px;
+            background-color: #222;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .container {
+            width: 1000px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .top-bar {
+            background-color: #1b1b1b;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #333;
+            border-radius: 15px 15px 0 0;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .logo span {
+            color: #2d79cf;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-right: 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .notifications {
+            padding: 15px;
+            text-align: center;
+        }
+        .notification {
+            background-color: #6d23b6;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .announcement {
+            background-color: #1b1b1b;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .announcement h3 {
+            color: #bbb;
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+        .announcement p {
+            margin: 0;
+            color: white;
+        }
+        .announcement p span {
+            color: red;
+            font-weight: bold;
+        }
+        .announcement a {
+            color: #2d79cf;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .profile-header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #ff0000; /* Красная рамка */
+        }
+
+        /* --- Секция комментариев (стили уже были, добавим новые) --- */
+        .comments-section {
+            background-color: #222;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .comments-section h3 {
+            margin: 0 0 10px 0;
+            color: #bbb;
+        }
+        .comment {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        .comment p {
+            margin: 0;
+            color: white;
+        }
+        .comment-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 10px;
+        }
+        .comment-button {
+            margin-top: 5px;
+            padding: 10px;
+            background-color: #2d79cf;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* Добавим стили для "шапки" комментария, аватарки и кнопки "Жалоба" */
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .comment-author {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .comment-date {
+            color: #bbb;
+            font-size: 12px;
+            margin-left: auto;
+        }
+        .complaint-button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        /* Новый код для уведомления сверху */
+        #topNotification {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(30, 30, 30, 0.95);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            transition: top 0.5s ease, opacity 0.3s ease;
+            font-size: 16px;
+            width: 450px;
+            text-align: center;
+            opacity: 0;
+            z-index: 10000;
+        }
+        #topNotification.show {
+            top: 20px;
+            opacity: 1;
+        }
+        /* Размытие фона при показе уведомления */
+        .blurBackground {
+            filter: blur(5px);
+            transition: filter 0.3s ease;
+        }
+        .status-message {
+        margin-top: 15px; /* Настройте необходимый отступ здесь */
+        color: rgb(255, 255, 255);
+        background-color: rgba(128, 128, 128, 0.8);
+        padding: 10px;
+        border-radius: 5px;
+        display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Новый элемент уведомления сверху -->
+    <div id="topNotification">
+        <strong>Упс! У нас возникли некоторые проблемы.</strong><br>
+        Пользователь запретил отправку личных сообщений.
+    </div>
+    
+    <div class="container" id="mainContainer">
+        <header>
+            <div class="top-bar">
+                <div class="logo">Hex<span>tech</span> Client</div>
+                <nav>
+                    <ul>
+                        <li><a href="forum.html">Главная</a></li>
+                        <li><a href="#">Поиск</a></li>
+                        <li><a href="login.html">Профиль</a></li>
+                        <li><a href="#">Купить</a></li>
+                        <li><a href="login.html" style="color: rgb(50, 180, 255);">Войти</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class="profile-container">
+            <div class="profile-header">
+                <img src="https://i.postimg.cc/Bb8DvSmD/f0b98676f3f77f4a0fd744a26903882f.jpg" alt="User Avatar">
+                <div class="profile-info">
+                    <h2>demaxi1337</h2>
+                    <p><span style="color: rgb(255, 0, 0);">Администратор</span> • 16 лет • Moscow City, Russia</p>
+                    <p>Присоединился: 23 февраля 2025 г. в 18:17</p>
+                    <p>Последний раз был в сети: сегодня в 0:34</p>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button id="messageButton">Отправить сообщение</button>
+            </div>
+            <div class="tabs">
+                <a href="uid1.html">Профиль</a>
+                <a href="#">Активность</a>
+                <a href="#">Посты</a>
+                <a href="uid1 about.html">О себе</a>
+            </div>
+            <div class="profile-actions">
+                <p id="statusMessage" style="margin-top: 15px; color: rgb(255, 255, 255); background-color: rgba(128, 128, 128, 0.8); padding: 10px; border-radius: 5px; display: inline-block;">
+                    - Ha! It's me! Your vile villanies. The author of your nightmares..
+                </p>
+            </div>
+            <div class="profile-actions">
+                <p id="statusMessage" style="margin-top: 0px; color: rgb(255, 255, 255);"> Вебсайт: https://t.me/demaxi1338</p>
+            </div>
+            <div class="profile-actions">
+                <p id="statusMessage" style="margin-top: 0px; color: rgb(255, 255, 255);"> Дата рождения: 23 октября, 2008 (16 лет)</p>
+            </div>
+            </div>
+                <!-- Скрипт для управления уведомлением и комментариями -->
+    <script>
+        // Выбор элементов для уведомления
+        const messageButton = document.getElementById('messageButton');
+        const topNotification = document.getElementById('topNotification');
+        const mainContainer = document.getElementById('mainContainer');
+
+        // Функция показа уведомления
+        function showNotification(e) {
+            // Если уведомление ещё не показано, показываем его
+            if (!topNotification.classList.contains('show')) {
+                topNotification.classList.add('show');
+                mainContainer.classList.add('blurBackground');
+                // Предотвращаем всплытие, чтобы документный клик не закрыл уведомление сразу
+                e.stopPropagation();
+            }
+        }
+
+        // Обработчик для кнопки "Отправить сообщение"
+        messageButton.addEventListener('click', showNotification);
+
+        // Если уведомление уже показано, и пользователь кликает на любое место (кроме уведомления), закрываем его
+        document.addEventListener('click', function(e) {
+            if (topNotification.classList.contains('show') && !topNotification.contains(e.target)) {
+                topNotification.classList.remove('show');
+                mainContainer.classList.remove('blurBackground');
+            }
+        });
+
+        // Предотвращаем закрытие уведомления, если клик произошёл на самом уведомлении
+        topNotification.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        </script>
+</body>
+</html>
